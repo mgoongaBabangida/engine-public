@@ -1,0 +1,217 @@
+#include "stdafx.h"
+#include "ScreenMesh.h"
+
+//-----------------------------------------------------------------------
+eScreenMesh::eScreenMesh(Texture _textureOne, Texture _textureTwo)
+	: textureOne(_textureOne), textureTwo(_textureTwo)
+{
+	quadVertices = {
+		// Positions   // TexCoords
+		-1.0f,  1.0f,  0.0f, 1.0f,
+		-1.0f, -1.0f,  0.0f, 0.0f,
+		1.0f, -1.0f,  1.0f, 0.0f,
+
+		-1.0f,  1.0f,  0.0f, 1.0f,
+		1.0f, -1.0f,  1.0f, 0.0f,
+		1.0f,  1.0f,  1.0f, 1.0f
+	};
+
+	glGenVertexArrays(1, &quadVAO);
+	glGenBuffers(1, &quadVBO);
+	glBindVertexArray(quadVAO);
+	glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), &quadVertices, GL_STATIC_DRAW);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+	glBindVertexArray(0);
+}
+
+//----------------------------------------------------------
+eScreenMesh::~eScreenMesh()
+{
+	glDeleteVertexArrays(1, &quadVAO);
+	glDeleteBuffers(1, &quadVBO);
+}
+
+//----------------------------------------------------------
+void eScreenMesh::DrawUnTextured()
+{
+	glBindVertexArray(quadVAO);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+	glBindVertexArray(0);
+}
+
+//----------------------------------------------------------
+void eScreenMesh::Draw()
+{
+	if (textureOne.m_id != Texture::GetDefaultTextureId())
+	{
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, textureOne.m_id);
+	}
+	if (textureTwo.m_id != Texture::GetDefaultTextureId())
+	{
+		glActiveTexture(GL_TEXTURE2);
+	glBindTexture(GL_TEXTURE_2D, textureTwo.m_id);
+	}
+	if (textureThree.m_id != Texture::GetDefaultTextureId())
+	{
+		glActiveTexture(GL_TEXTURE3);
+		glBindTexture(GL_TEXTURE_2D, textureThree.m_id);
+	}
+
+	glBindVertexArray(quadVAO);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+	glBindVertexArray(0);
+}
+
+//----------------------------------------------------------
+std::vector<const Texture*> eScreenMesh::GetTextures() const
+{
+  std::vector<const Texture*> ret;
+  ret.push_back(&textureOne);
+  ret.push_back(&textureTwo);
+	ret.push_back(&textureThree);
+  return ret;
+}
+
+//-----------------------------------------------------------------------------------
+void eScreenMesh::UpdateFrame(float top_x, float top_y,
+															float botom_x, float botom_y,
+															float tex_top_x, float tex_top_y,
+															float tex_botom_x, float tex_botom_y,
+															float viewport_width, float viewport_height)
+{
+	top_y = viewport_height - top_y; // invert y axis
+	botom_y = viewport_height - botom_y; // invert y axis
+
+	quadVertices[0] = (top_x / viewport_width) * 2 - 1.0f; // top left
+	quadVertices[1] = (top_y / viewport_height) * 2 - 1.0f;
+	
+	quadVertices[2] = tex_top_x / static_cast<float>(textureOne.m_width);
+	quadVertices[3] = tex_botom_y / static_cast<float>(textureOne.m_height);
+
+	quadVertices[4] = (top_x / viewport_width) * 2 - 1.0f; // bottom left
+	quadVertices[5] = (botom_y / viewport_height) * 2 - 1.0f;
+	
+	quadVertices[6] = tex_top_x / static_cast<float>(textureOne.m_width);
+	quadVertices[7] = tex_top_y / static_cast<float>(textureOne.m_height);
+
+	quadVertices[8] = (botom_x / viewport_width) * 2 - 1.0f; // bottom right
+	quadVertices[9] = (botom_y / viewport_height) * 2 - 1.0f;
+	
+	quadVertices[10] = tex_botom_x / static_cast<float>(textureOne.m_width);
+	quadVertices[11] = tex_top_y / static_cast<float>(textureOne.m_height);
+
+	quadVertices[12] = (top_x / viewport_width) * 2 - 1.0f;// top left
+	quadVertices[13] = (top_y / viewport_height) * 2 - 1.0f;
+
+	quadVertices[14] = tex_top_x / static_cast<float>(textureOne.m_width);
+	quadVertices[15] = tex_botom_y / static_cast<float>(textureOne.m_height);
+
+	quadVertices[16] = (botom_x / viewport_width) * 2 - 1.0f;// bottom right
+	quadVertices[17] = (botom_y / viewport_height) * 2 - 1.0f;
+
+	quadVertices[18] = tex_botom_x / static_cast<float>(textureOne.m_width);
+	quadVertices[19] = tex_top_y / static_cast<float>(textureOne.m_height);
+
+	quadVertices[20] = (botom_x / viewport_width) * 2 - 1.0f;// top right
+	quadVertices[21] = (top_y / viewport_height) * 2 - 1.0f;
+
+	quadVertices[22] = tex_botom_x / static_cast<float>(textureOne.m_width);
+	quadVertices[23] = tex_botom_y / static_cast<float>(textureOne.m_height);
+
+	glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), &quadVertices, GL_DYNAMIC_DRAW);
+}
+
+//------------------------------------------------------------------------------------------------------------
+glm::vec2 eScreenMesh::GetNDCCenter() const
+{
+	return (glm::vec2(quadVertices[0], quadVertices[1]) + 
+					glm::vec2(quadVertices[4], quadVertices[5]) + 
+					glm::vec2(quadVertices[8], quadVertices[9]) + 
+					glm::vec2(quadVertices[20] , quadVertices[21])) / 4.f;
+}
+
+//------------------------------------------------------------------------------------------------------------
+void eScreenMesh::SetViewPortToDefault()
+{
+	quadVertices = {
+		// Positions   // TexCoords
+		-1.0f,  1.0f,  0.0f, 1.0f,
+		-1.0f, -1.0f,  0.0f, 0.0f,
+		1.0f, -1.0f,  1.0f, 0.0f,
+
+		-1.0f,  1.0f,  0.0f, 1.0f,
+		1.0f, -1.0f,  1.0f, 0.0f,
+		1.0f,  1.0f,  1.0f, 1.0f
+	};
+
+	glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), &quadVertices, GL_DYNAMIC_DRAW);
+}
+
+//------------------------------------------------------------------------------------------------------------
+eFrameMesh::eFrameMesh()
+{
+  frameVertices = {
+    // Positions   // TexCoords
+    0.0f,  0.0f,  0.0f, 1.0f,
+		0.0f,  0.0f,  0.0f, 0.0f,
+		0.0f,  0.0f,  1.0f, 0.0f,
+		0.0f,  0.0f,  0.0f, 1.0f,
+		0.0f,  0.0f,  1.0f, 0.0f,
+    };
+
+	glGenVertexArrays(1, &quadVAO_fr);
+	glGenBuffers(1, &quadVBO_fr);
+	glBindVertexArray(quadVAO_fr);
+	
+	glBindBuffer(GL_ARRAY_BUFFER, quadVBO_fr);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(frameVertices), &frameVertices, GL_DYNAMIC_DRAW);
+	
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+	glBindVertexArray(0);
+}
+
+//------------------------------------------------------------------------------------------------------------
+eFrameMesh::~eFrameMesh()
+{
+  glGenVertexArrays(1, &quadVAO_fr);
+  glGenBuffers(1, &quadVBO_fr);
+}
+
+//------------------------------------------------------------------------------------------------------------
+void eFrameMesh::Draw()
+{
+	glBindVertexArray(quadVAO_fr);
+	glDrawArrays(GL_LINE_STRIP, 0, 5);
+	glBindVertexArray(0);
+}
+
+//-----------------------------------------------------------------------------------
+void eFrameMesh::UpdateFrame(float top_x, float top_y, float botom_x, float botom_y, float viewport_width, float viewport_height)
+{
+	top_y = viewport_height - top_y; // invert y axis
+	botom_y = viewport_height - botom_y; // invert y axis
+	frameVertices[0] = (top_x / viewport_width) * 2 - 1.0f;
+	frameVertices[1] = (top_y / viewport_height) * 2 - 1.0f;
+  frameVertices[4] = (botom_x / viewport_width) * 2 - 1.0f;
+  frameVertices[5] = (top_y / viewport_height) * 2 - 1.0f;
+  frameVertices[8] = (botom_x / viewport_width) * 2 - 1.0f;
+  frameVertices[9] = (botom_y / viewport_height) * 2 - 1.0f;
+  frameVertices[12] = (top_x / viewport_width) * 2 - 1.0f;
+  frameVertices[13] = (botom_y / viewport_height) * 2 - 1.0f;
+  frameVertices[16] = (top_x / viewport_width) * 2 - 1.0f;
+  frameVertices[17] = (top_y / viewport_height) * 2 - 1.0f;
+
+  glBindBuffer(GL_ARRAY_BUFFER, quadVBO_fr);
+  glBufferData(GL_ARRAY_BUFFER, sizeof(frameVertices), &frameVertices, GL_DYNAMIC_DRAW);
+}
+

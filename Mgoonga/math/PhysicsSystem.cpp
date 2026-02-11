@@ -1,0 +1,297 @@
+#include "PhysicsSystem.h"
+#include <glm/glm/gtx/norm.hpp>
+#include <algorithm>
+
+namespace dbb
+{
+  bool AreContactsCloseEnough(const CollisionManifold& oldManifold, const CollisionManifold& newManifold);
+  bool NewManifoldIsClearlyBetter(const CollisionManifold& _old, const CollisionManifold& _new);
+
+  //-------------------------------------------------------
+  void PhysicsSystem::Update(float _deltaTime)
+  {
+    size_t size = m_callbacks.size();
+    for (size_t i = 0; i < size; ++i)
+    {
+      CollisionOccured.Occur(m_callbacks.front());
+      m_callbacks.pop();
+    }
+  }
+
+  //-------------------------------------------------------
+  void PhysicsSystem::UpdateAsync(float _deltaTime)
+  {
+    //ClearCollisions();
+    std::vector<CollisionPair> newCollisions;
+    bool fls = false;
+    while (!body_container_flag.compare_exchange_weak(fls, true)) { fls = false; }
+
+      for (size_t i = 0, size = m_bodies.size(); i < size; ++i)
+      {
+        for (size_t j = i; j < size; ++j)
+        {
+          if (i == j)
+            continue;
+          CollisionManifold result;
+          CollisionManifold::ResetCollisionManifold(result);
+          if (m_bodies[i]->HasVolume() && m_bodies[j]->HasVolume())
+          {
+            result = RigidBody::FindCollisionFeatures(*m_bodies[i], *m_bodies[j]);
+            if (result.colliding)
+            {
+              auto existing = std::find_if(m_collisions.begin(), m_collisions.end(), [this, i, j, &result, &newCollisions](const CollisionPair& existing)
+                {
+                  return (existing.m_A == m_bodies[i] && existing.m_B == m_bodies[j]) ||
+                         (existing.m_A == m_bodies[j] && existing.m_B == m_bodies[i]);
+                
+                });
+             if (existing!= m_collisions.end()) // collision already exists
+             {
+               if (AreContactsCloseEnough(existing->m_result, result) && !NewManifoldIsClearlyBetter(existing->m_result, result))
+                 newCollisions.emplace_back(m_bodies[i], m_bodies[j], existing->m_result);
+               else
+                 newCollisions.emplace_back(m_bodies[i], m_bodies[j], result);
+               m_callbacks.push(newCollisions.back());
+             }
+             else // new collision -> just add
+             {
+               newCollisions.emplace_back(m_bodies[i], m_bodies[j], result);
+               m_callbacks.push(newCollisions.back());
+             }
+            }
+          }
+        }
+      }
+      std::swap(m_collisions, newCollisions);
+
+      for (size_t i = 0, size = m_bodies.size(); i < size; ++i)
+        m_bodies[i]->ApplyForces();
+
+      // Calculate forces acting on cloths
+      for (int i = 0, size = m_cloths.size(); i < size; ++i)
+        m_cloths[i]->ApplyForces();
+
+      for (size_t k = 0; k < m_impulseIteration; ++k)
+      {
+        for (size_t i = 0; i < m_collisions.size(); ++i)
+        {
+          size_t jSize = m_collisions[i].m_result.contacts.size();
+          for (int j = 0; j < jSize; ++j)
+          {
+            if (m_collisions[i].m_A->HasVolume() && m_collisions[i].m_B->HasVolume())
+            {
+              if (m_linear_impulses_only)
+                RigidBody::ApplyImpulseLinear(*m_collisions[i].m_A, *m_collisions[i].m_B, m_collisions[i].m_result, j);
+              else
+                RigidBody::ApplyImpulse(*m_collisions[i].m_A, *m_collisions[i].m_B, m_collisions[i].m_result, j);
+            }
+          }
+        }
+      }
+
+      for (size_t i = 0, size = m_bodies.size(); i < size; ++i)
+        m_bodies[i]->Update(_deltaTime);
+
+      // Integrate velocity and impulse of cloths
+      for (int i = 0, size = m_cloths.size(); i < size; ++i)
+        m_cloths[i]->Update(_deltaTime);
+
+      //sync
+      size_t size = m_collisions.size();
+      for (size_t i = 0; i < size; ++i)
+      {
+        float totalMass = m_collisions[i].m_A->InvMass() + m_collisions[i].m_B->InvMass();
+        if (totalMass == 0.0f)
+          continue;
+
+        if (!m_collisions[i].m_A->GetGravityApplicable() || !m_collisions[i].m_B->GetGravityApplicable())
+          m_collisions[i].m_result.depth *= 2;
+
+        float depth = fmaxf(m_collisions[i].m_result.depth - m_penetrationSlack, 0.0f);
+        float scalar = depth / totalMass;
+        glm::vec3 correction = m_collisions[i].m_result.normal * scalar * m_linearProjectionPercent;
+
+        if (m_collisions[i].m_A->GetGravityApplicable() || m_correct_all_objects)
+        {
+          m_collisions[i].m_A->SetPosition(
+            m_collisions[i].m_A->GetPosition() - correction * m_collisions[i].m_A->InvMass());
+        }
+        if (m_collisions[i].m_B->GetGravityApplicable() || m_correct_all_objects)
+        {
+          m_collisions[i].m_B->SetPosition(
+            m_collisions[i].m_B->GetPosition() + correction * m_collisions[i].m_B->InvMass());
+        }
+        m_collisions[i].m_A->SynchCollisionVolumes();
+        m_collisions[i].m_B->SynchCollisionVolumes();
+      }
+
+      // Apply spring forces
+      for (int i = 0, size = m_springs.size(); i < size; ++i)
+        m_springs[i].ApplyForce(_deltaTime);
+
+      // apply spring forces for cloths
+      for (int i = 0, size = m_cloths.size(); i < size; ++i)
+        m_cloths[i]->ApplySpringForces(_deltaTime);
+
+      //Solve Constraints
+      for (size_t i = 0, size = m_bodies.size(); i < size; ++i)
+        m_bodies[i]->SolveConstraints(m_constraints);
+
+      // NEW: Same as above, solve cloth constraints
+      for (int i = 0, size = m_cloths.size(); i < size; ++i)
+        m_cloths[i]->SolveConstraints(m_constraints);
+
+      body_container_flag.store(false);
+  }
+
+  //-------------------------------------------------------
+  void PhysicsSystem::AddRigidbody(std::shared_ptr<dbb::RigidBody> _body)
+  {
+    bool fls = false;
+    while (!body_container_flag.compare_exchange_weak(fls, true)) { fls = false; }
+    m_bodies.push_back(_body);
+    body_container_flag.store(false);
+  }
+
+  //-------------------------------------------------------
+  void PhysicsSystem::AddConstraint(const OBB& _obb)
+  {
+    m_constraints.push_back(_obb);
+  }
+  //-------------------------------------------------------
+  void PhysicsSystem::AddSpring(const Spring& _spring)
+  {
+    m_springs.push_back(_spring);
+  }
+  //-------------------------------------------------------
+  void PhysicsSystem::AddCloth(Cloth* _cloth)
+  {
+    m_cloths.push_back(_cloth);
+  }
+  //-------------------------------------------------------
+  void PhysicsSystem::SetLinearProjectionPercent(float _linearProjectionPercent)
+  {
+    m_linearProjectionPercent = _linearProjectionPercent;
+  }
+  //-------------------------------------------------------
+  float PhysicsSystem::GetLinearProjectionPercent()
+  {
+    return m_linearProjectionPercent;
+  }
+  //-------------------------------------------------------
+  void PhysicsSystem::SetPenetrationSlack(float _penetrationSlack)
+  {
+    m_penetrationSlack = _penetrationSlack;
+  }
+  //-------------------------------------------------------
+  float PhysicsSystem::GetPenetrationSlack()
+  {
+    return m_penetrationSlack;
+  }
+  //-------------------------------------------------------
+  void PhysicsSystem::SetImpulseIteration(int32_t _impulseIteration)
+  {
+    m_impulseIteration = _impulseIteration;
+  }
+
+  //-------------------------------------------------------
+  int32_t PhysicsSystem::GetImpulseIteration()
+  {
+    return m_impulseIteration;
+  }
+
+  //-------------------------------------------------------
+  void PhysicsSystem::SetLinearImpulsesOnly(bool _l)
+  {
+    m_linear_impulses_only = _l;
+  }
+
+  //-------------------------------------------------------
+  bool PhysicsSystem::GetLinearImpulsesOnly()
+  {
+    return m_linear_impulses_only;
+  }
+
+  //-------------------------------------------------------
+  void PhysicsSystem::SetCorrectAllObjects(bool _c)
+  {
+    m_correct_all_objects = _c;
+  }
+
+  //-------------------------------------------------------
+  bool PhysicsSystem::GetCorrectAllObjects()
+  {
+    return m_correct_all_objects;
+  }
+
+  //-------------------------------------------------------
+  void PhysicsSystem::ClearRigidbodys()
+  {
+    bool fls = false;
+    while (!body_container_flag.compare_exchange_weak(fls, true)) { fls = false; }
+    m_bodies.clear();
+    body_container_flag.store(false);
+  }
+
+  //-------------------------------------------------------
+  void PhysicsSystem::ClearConstraints()
+  {
+    m_constraints.clear();
+  }
+
+  //-------------------------------------------------------
+  void PhysicsSystem::ClearSprings()
+  {
+    m_springs.clear();
+  }
+
+  //-------------------------------------------------------
+  void PhysicsSystem::ClearCloths()
+  {
+    m_cloths.clear();
+  }
+
+  //-------------------------------------------------------
+  void PhysicsSystem::ClearCollisions()
+  {
+    m_collisions.clear();
+  }
+
+  //------------------------------------------------------------------------------
+  bool AreContactsCloseEnough(const CollisionManifold& oldManifold, const CollisionManifold& newManifold)
+  {
+    return false;
+
+    // Compare normals (cosine of small angle threshold ~0.999)
+    if (glm::dot(oldManifold.normal, newManifold.normal) < 0.995f)
+      return false;
+
+    // Check if enough contact points are still close (within epsilon)
+    int similarCount = 0;
+    const float positionThresholdSq = 0.001f * 0.001f; // adjust as needed
+
+    for (const glm::vec3& oldPt : oldManifold.contacts)
+    {
+      bool found = false;
+      for (const glm::vec3& newPt : newManifold.contacts)
+      {
+        if (glm::length2(oldPt - newPt) < positionThresholdSq)
+        {
+          found = true;
+          break;
+        }
+      }
+      if (found)
+        ++similarCount;
+    }
+
+    // Require at least 1 or 2 matching contacts
+    return similarCount >= std::min(2u, (uint32_t)oldManifold.contacts.size());
+  }
+
+  //--------------------------------------------------------------------------
+  bool NewManifoldIsClearlyBetter(const CollisionManifold& _old, const CollisionManifold& _new)
+  {
+    return _new.depth > _old.depth + 0.01f || _new.contacts.size() > _old.contacts.size();
+  }
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Anim>
+ <Data id="1" name="horse_Idle" startFrame="0f" endFrame="100f" />
+ <Data id="2" name="horse_looking_around" startFrame="101f" endFrame="226f" />
+ <Data id="3" name="horse_sniff" startFrame="227f" endFrame="287f" />
+ <Data id="4" name="horse_rear_up" startFrame="288f" endFrame="373f" />
+ <Data id="5" name="horse_kick" startFrame="374f" endFrame="400f" />
+ <Data id="6" name="horse_bite" startFrame="401f" endFrame="441f" />
+ <Data id="7" name="horse_death" startFrame="442f" endFrame="468f" />
+ <Data id="8" name="horse_kick_ground" startFrame="473f" endFrame="507f" />
+ <Data id="9" name="horse_eating" startFrame="512f" endFrame="612f" />
+ <Data id="10" name="horse_walk" startFrame="617f" endFrame="651f" />
+ <Data id="11" name="horse_trot" startFrame="656f" endFrame="680f" />
+ <Data id="12" name="horse_galloping" startFrame="686f" endFrame="701f" />
+ <Data id="13" name="horse_jump" startFrame="702f" endFrame="737f" />
+ <Data id="14" name="horse_running_death" startFrame="738f" endFrame="778f" />
+</Anim>

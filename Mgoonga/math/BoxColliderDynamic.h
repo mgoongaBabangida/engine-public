@@ -1,0 +1,58 @@
+#pragma once
+#include "Colliders.h"
+
+//-----------------------------------------------------------
+class DLL_MATH BoxColliderDynamic : public dbb::OBBCollider
+{
+public:
+  struct AnimationData
+  {
+    std::string name;
+    std::vector<extremDots> extremDots;
+    std::vector <glm::vec3> centers;
+    std::vector <float>     radiuses;
+  };
+
+  BoxColliderDynamic() : dbb::OBBCollider({}) {}
+  BoxColliderDynamic(const BoxColliderDynamic&);
+
+  BoxColliderDynamic(const std::string& _modelName,
+                     extremDots _dots,
+                     glm::vec3 _center,
+                     float _radius,
+                     std::vector<AnimationData> _data,
+                     const std::string& _path = "")
+    : dbb::OBBCollider({})
+    , m_data(_data)
+  {
+    m_model_name = _modelName;
+    m_dots = _dots;
+    m_center = _center;
+    m_radius = _radius;
+    m_path = _path;
+  }
+
+  virtual void                    CalculateExtremDots(const eObject* _object) override;
+  void                            CalculateExtremDots(IRigger* _rigger, IModel* _model);
+
+  virtual std::vector<glm::mat3>	GetBoundingTriangles(const ITransform& trans)const override;
+  virtual std::vector<glm::vec3>	GetExtrems(const ITransform& trans) const override;
+  virtual extremDots							GetExtremDotsLocalSpace() const override;
+  virtual glm::vec3               GetCenterLocalSpace() const override;
+
+  virtual float										GetRadius() const override;
+ 
+  virtual void										SetFrom(const ITransform& trans) override;
+  virtual void										SetTo(ITransform& trans) const override;
+
+  dbb::OBB               _GetOBB(const ITransform& _trans) const;
+  dbb::sphere 	         _GetSphere(const ITransform& _trans);
+
+  const std::vector<AnimationData>& GetData() const { return m_data; }
+  const IRigger*                    GetRigger() const { return m_rigger;}
+  void                              SetRigger(IRigger* _r) { m_rigger = _r; }
+
+protected:
+  std::vector<AnimationData> m_data;
+  IRigger*                   m_rigger = nullptr;
+};

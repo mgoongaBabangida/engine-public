@@ -1,0 +1,10 @@
+1. Download the project from https://github.com/mgoongaBabangida/engine-public
+2. Download third_party folder and put it one level above the repository. Now it should compile but would not link. Use check_third_party.bat!
+3. Download third_party_dlls and put all of them to Sandbox.exe. EXCEPT assimpd.dll. You should build them yourself on your PC.
+4  Build third_party\assimp-3.1.1(or the current one in premake5.lua) with CMake. Put assimpd.dll(or the current one in premake5.lua) to SandBox.exe
+(be careful with dll type x32/x64)
+5. Build scripting (debug for debug exe , release for release exe)
+
+WASD for character
+shift(!!!) + mouse for camera
+E for actions inside boxes.

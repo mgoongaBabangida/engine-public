@@ -1,0 +1,562 @@
+Rigger: 232311132
+RootBoneName: RootNode
+GlobalModelTransform: [100, -0, 0, -0, -0, 100, -0, 0, 0, -0, 100, -0, -0, 0, -0, 1]
+Bones:
+  - BoneName: mixamorig_LeftEye
+    BoneID: 0
+    BindTransform: [1, 0, 0, 0, 0, 0.999639988, 0.0268179998, 0, 0, -0.0268179998, 0.999639988, 0, -3.07413793, -166.13916, -12.1765118, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+  - BoneName: mixamorig_RightEye
+    BoneID: 1
+    BindTransform: [1, 0, 0, 0, 0, 0.999639988, 0.0268179998, 0, 0, -0.0268179998, 0.999639988, 0, 3.06098795, -166.141632, -12.1766119, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+  - BoneName: mixamorig_Hips
+    BoneID: 2
+    BindTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 3.00000011e-06, -104.225853, -1.55422902, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_Spine
+        BoneID: 3
+      - BoneName: mixamorig_LeftUpLeg
+        BoneID: 17
+      - BoneName: mixamorig_RightUpLeg
+        BoneID: 21
+  - BoneName: mixamorig_Spine
+    BoneID: 3
+    BindTransform: [1, 0, 0, 0, 0, 0.996417999, 0.084567003, 0, 0, -0.084567003, 0.996417999, 0, 3.00000011e-06, -113.866173, -11.2237682, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_Spine1
+        BoneID: 4
+  - BoneName: mixamorig_Spine1
+    BoneID: 4
+    BindTransform: [1, 0, 0, 0, 0, 0.989241004, 0.146293998, 0, 0, -0.146293998, 0.989241004, 0, 3.00000011e-06, -123.062599, -18.904026, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_Spine2
+        BoneID: 5
+  - BoneName: mixamorig_Spine2
+    BoneID: 5
+    BindTransform: [1, 0, 0, 0, 0, 0.988669991, 0.150106996, 0, 0, -0.150106996, 0.988669991, 0, 3.00000011e-06, -132.191788, -19.4138298, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_Neck
+        BoneID: 6
+      - BoneName: mixamorig_LeftShoulder
+        BoneID: 8
+      - BoneName: mixamorig_RightShoulder
+        BoneID: 13
+  - BoneName: mixamorig_Neck
+    BoneID: 6
+    BindTransform: [1, 0, 0, 0, 0, 0.999840021, 0.0178800002, 0, 0, -0.0178800002, 0.999840021, 0, 3.00000011e-06, -150.31044, 0.492467999, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_Head
+        BoneID: 7
+  - BoneName: mixamorig_Head
+    BoneID: 7
+    BindTransform: [1, 0, 0, 0, 0, 0.999840021, 0.0178800002, 0, 0, -0.0178800002, 0.999840021, 0, 3.00000011e-06, -159.899918, -1.34732902, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_HeadTop_End
+        BoneID: 51
+      - BoneName: mixamorig_LeftEye
+        BoneID: 0
+      - BoneName: mixamorig_RightEye
+        BoneID: 1
+  - BoneName: mixamorig_LeftShoulder
+    BoneID: 8
+    BindTransform: [-0.206603006, 0.977070987, -0.0514440015, 0, 0.0161889996, -0.0491579995, -0.998660028, 0, -0.978290975, -0.207158998, -0.00566199981, 0, -4.64011288, 1.95244503, 144.559525, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_LeftArm
+        BoneID: 9
+  - BoneName: mixamorig_LeftArm
+    BoneID: 9
+    BindTransform: [-0.00141699996, 0.999992013, -0.00374599989, 0, -0.011736, -0.00376200001, -0.999924004, 0, -0.999930024, -0.00137299998, 0.0117410002, 0, -3.84818196, -14.6181822, 144.115585, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_LeftForeArm
+        BoneID: 10
+  - BoneName: mixamorig_LeftForeArm
+    BoneID: 10
+    BindTransform: [0.00861299969, 0.999951005, 0.00486399978, 0, -0.0123920003, 0.00497000013, -0.99991101, 0, -0.999885976, 0.00855199993, 0.0124340001, 0, -4.18475294, -43.6572571, 143.747467, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_LeftHand
+        BoneID: 11
+  - BoneName: mixamorig_LeftHand
+    BoneID: 11
+    BindTransform: [0.00861299969, 0.999951005, 0.00486399978, 0, -0.0123920003, 0.00497000013, -0.99991101, 0, -0.999885976, 0.00855199993, 0.0124340001, 0, -4.18475294, -71.9923401, 143.747543, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_LeftHandThumb1
+        BoneID: 12
+      - BoneName: mixamorig_LeftHandIndex1
+        BoneID: 27
+      - BoneName: mixamorig_LeftHandMiddle1
+        BoneID: 30
+      - BoneName: mixamorig_LeftHandRing1
+        BoneID: 33
+      - BoneName: mixamorig_LeftHandPinky1
+        BoneID: 36
+  - BoneName: mixamorig_LeftHandThumb1
+    BoneID: 12
+    BindTransform: [0.461142987, 0.779680014, -0.423610985, 0, -0.0312140007, -0.462853014, -0.885886014, 0, -0.886776984, 0.421743006, -0.189104006, 0, -32.1282272, 9.59609985, 156.9021, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_LeftHandThumb2
+        BoneID: 25
+  - BoneName: mixamorig_RightShoulder
+    BoneID: 13
+    BindTransform: [-0.201616004, -0.978188992, 0.0499779992, 0, 0, -0.0510260016, -0.998696983, 0, 0.979465008, -0.201352999, 0.0102880001, 0, 2.32700491, 2.23701596, 144.611313, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_RightArm
+        BoneID: 14
+  - BoneName: mixamorig_RightArm
+    BoneID: 14
+    BindTransform: [0.00359000009, -0.999993026, 0.001009, 0, 0.00629700022, -0.000986999949, -0.999979973, 0, 0.999974012, 0.00359599991, 0.00629300019, 0, 4.64481783, -15.0018263, 144.031448, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_RightForeArm
+        BoneID: 15
+  - BoneName: mixamorig_RightForeArm
+    BoneID: 15
+    BindTransform: [-0.00381099992, -0.999993026, -5.50000004e-05, 0, 0.00646700012, 2.99999992e-05, -0.999979019, 0, 0.999971986, -0.00381199992, 0.00646700012, 0, 4.3020072, -43.0296097, 143.986557, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_RightHand
+        BoneID: 16
+  - BoneName: mixamorig_RightHand
+    BoneID: 16
+    BindTransform: [-0.00381099992, -0.999993026, -5.50000004e-05, 0, 0.00646700012, 2.99999992e-05, -0.999979019, 0, 0.999971986, -0.00381199992, 0.00646700012, 0, 4.3020072, -71.3463135, 143.986542, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_RightHandThumb1
+        BoneID: 39
+      - BoneName: mixamorig_RightHandIndex1
+        BoneID: 61
+      - BoneName: mixamorig_RightHandMiddle1
+        BoneID: 42
+      - BoneName: mixamorig_RightHandRing1
+        BoneID: 45
+      - BoneName: mixamorig_RightHandPinky1
+        BoneID: 48
+  - BoneName: mixamorig_LeftUpLeg
+    BoneID: 17
+    BindTransform: [-1, 0, 0, 0, 0, -0.999850988, 0.0172649994, 0, 0, 0.0172649994, 0.999850988, 0, 8.21052074, 97.4637146, -1.63763905, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_LeftLeg
+        BoneID: 18
+  - BoneName: mixamorig_LeftLeg
+    BoneID: 18
+    BindTransform: [-1, 0, 0, 0, 0, -0.997027993, -0.0770400017, 0, 0, -0.0770400017, 0.997027993, 0, 8.21052074, 53.0195351, 3.37400913, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_LeftFoot
+        BoneID: 19
+  - BoneName: mixamorig_LeftFoot
+    BoneID: 19
+    BindTransform: [-0.999984026, 0.00554799987, 0.000467000005, 0, -0.00315900007, -0.634398997, 0.772998989, 0, 0.00458500022, 0.772984982, 0.634406984, 0, 8.25030804, 7.56968117, -5.00818586, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_LeftToeBase
+        BoneID: 20
+  - BoneName: mixamorig_LeftToeBase
+    BoneID: 20
+    BindTransform: [-0.999983013, -0.00576000009, -0.00113999995, 0, -0.00113600004, -0.000608999981, 0.999998987, 0, -0.00576000009, 0.999983013, 0.000601999986, 0, 8.33191872, -7.84165716, 0.00579700014, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_LeftToe_End
+        BoneID: 65
+  - BoneName: mixamorig_RightUpLeg
+    BoneID: 21
+    BindTransform: [-1, 0, 0, 0, 0, -0.999861002, 0.0166829992, 0, 0, 0.0166829992, 0.999861002, 0, -8.20505428, 97.4580765, -1.580639, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_RightLeg
+        BoneID: 22
+  - BoneName: mixamorig_RightLeg
+    BoneID: 22
+    BindTransform: [-1, 0, 0, 0, 0, -0.997159004, -0.0753299966, 0, 0, -0.0753299966, 0.997159004, 0, -8.20505428, 52.9987907, 3.30685997, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_RightFoot
+        BoneID: 23
+  - BoneName: mixamorig_RightFoot
+    BoneID: 23
+    BindTransform: [-0.999987006, -0.00511999987, -0.000590000011, 0, 0.0027999999, -0.635776997, 0.77186799, 0, -0.00432700012, 0.77185601, 0.635783017, 0, -8.24078274, 7.5353322, -5.0205369, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_RightToeBase
+        BoneID: 24
+  - BoneName: mixamorig_RightToeBase
+    BoneID: 24
+    BindTransform: [-0.999948978, 0.00993200019, 0.00159999996, 0, 0.00161399995, 0.00137700001, 0.999997973, 0, 0.00992999971, 0.999949992, -0.00139300001, 0, -8.35347366, -7.84101915, 0.0528619997, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_RightToe_End
+        BoneID: 66
+  - BoneName: mixamorig_LeftHandThumb2
+    BoneID: 25
+    BindTransform: [0.461142987, 0.779680014, -0.423610985, 0, -0.0312140007, -0.462853014, -0.885886014, 0, -0.886776984, 0.421743006, -0.189104006, 0, -31.9735947, 5.47223616, 156.902039, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_LeftHandThumb3
+        BoneID: 26
+  - BoneName: mixamorig_LeftHandThumb3
+    BoneID: 26
+    BindTransform: [0.496517003, 0.757643998, -0.423610985, 0, -0.0524699986, -0.460925996, -0.885886014, 0, -0.866439998, 0.462083995, -0.189104006, 0, -31.7908497, 3.44539213, 156.902054, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_LeftHandThumb4
+        BoneID: 52
+  - BoneName: mixamorig_LeftHandIndex1
+    BoneID: 27
+    BindTransform: [0.00789400004, 0.999956012, 0.00501600001, 0, -0.0197010003, 0.00517100003, -0.999792993, 0, -0.999774992, 0.00779299997, 0.0197410006, 0, -1.09589303, -81.1553192, 143.125809, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_LeftHandIndex2
+        BoneID: 28
+  - BoneName: mixamorig_LeftHandIndex2
+    BoneID: 28
+    BindTransform: [0.00789400004, 0.999956012, 0.00501499977, 0, -0.0197010003, 0.00516999979, -0.999792993, 0, -0.999774992, 0.00779299997, 0.0197410006, 0, -1.09931898, -84.8041153, 143.12587, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_LeftHandIndex3
+        BoneID: 29
+  - BoneName: mixamorig_LeftHandIndex3
+    BoneID: 29
+    BindTransform: [0.00789400004, 0.999956012, 0.00501499977, 0, -0.0197010003, 0.00516999979, -0.999792993, 0, -0.999774992, 0.00779299997, 0.0197410006, 0, -1.100631, -87.7190323, 143.125931, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_LeftHandIndex4
+        BoneID: 53
+  - BoneName: mixamorig_LeftHandMiddle1
+    BoneID: 30
+    BindTransform: [-0.000327999995, 0.99999702, -0.00227000006, 0, -0.0205240007, -0.00227700011, -0.999786973, 0, -0.999789, -0.000280999986, 0.0205249991, 0, -2.56509805, -80.5400543, 144.279022, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_LeftHandMiddle2
+        BoneID: 31
+  - BoneName: mixamorig_LeftHandMiddle2
+    BoneID: 31
+    BindTransform: [-0.000327999995, 0.99999702, -0.00227100006, 0, -0.0205240007, -0.00227700011, -0.999786973, 0, -0.999789, -0.000280999986, 0.0205249991, 0, -2.56978703, -84.190033, 144.279068, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_LeftHandMiddle3
+        BoneID: 32
+  - BoneName: mixamorig_LeftHandMiddle3
+    BoneID: 32
+    BindTransform: [-0.000327999995, 0.99999702, -0.00227100006, 0, -0.0205230005, -0.00227700011, -0.999786973, 0, -0.999789, -0.000280999986, 0.0205230005, 0, -2.56756592, -87.2124557, 144.279068, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_LeftHandMiddle4
+        BoneID: 54
+  - BoneName: mixamorig_LeftHandRing1
+    BoneID: 33
+    BindTransform: [0.0037740001, 0.999966979, 0.0072209998, 0, -0.0201469995, 0.0072949999, -0.999769986, 0, -0.999790013, 0.00362699991, 0.0201740004, 0, -4.81508303, -81.4584122, 143.504883, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_LeftHandRing2
+        BoneID: 34
+  - BoneName: mixamorig_LeftHandRing2
+    BoneID: 34
+    BindTransform: [0.0037740001, 0.999966979, 0.00722000003, 0, -0.0201469995, 0.0072949999, -0.999769986, 0, -0.999790013, 0.00362699991, 0.0201740004, 0, -4.81519794, -84.6200867, 143.504898, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_LeftHandRing3
+        BoneID: 35
+  - BoneName: mixamorig_LeftHandRing3
+    BoneID: 35
+    BindTransform: [0.0037740001, 0.999966979, 0.00722000003, 0, -0.0201450009, 0.0072949999, -0.999769986, 0, -0.999790013, 0.00362699991, 0.0201719999, 0, -4.8127532, -87.5413589, 143.504898, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_LeftHandRing4
+        BoneID: 55
+  - BoneName: mixamorig_LeftHandPinky1
+    BoneID: 36
+    BindTransform: [8.9000001e-05, 0.999983013, 0.00582299987, 0, -0.0198309999, 0.00582400011, -0.999786019, 0, -0.999803007, -2.7e-05, 0.0198309999, 0, -6.51382017, -80.2457428, 143.217743, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_LeftHandPinky2
+        BoneID: 37
+  - BoneName: mixamorig_LeftHandPinky2
+    BoneID: 37
+    BindTransform: [8.9000001e-05, 0.999983013, 0.00582299987, 0, -0.0198299997, 0.00582400011, -0.999786019, 0, -0.999803007, -2.7e-05, 0.0198299997, 0, -6.51374292, -83.8273544, 143.217743, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_LeftHandPinky3
+        BoneID: 38
+  - BoneName: mixamorig_LeftHandPinky3
+    BoneID: 38
+    BindTransform: [8.9000001e-05, 0.999983013, 0.00582299987, 0, -0.0198299997, 0.00582299987, -0.999786019, 0, -0.999803007, -2.7e-05, 0.0198299997, 0, -6.51365614, -85.9638672, 143.217789, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_LeftHandPinky4
+        BoneID: 56
+  - BoneName: mixamorig_RightHandThumb1
+    BoneID: 39
+    BindTransform: [0.308086008, -0.792647004, 0.52611202, 0, 0.269805998, -0.457509011, -0.847284019, 0, 0.912298024, 0.402983993, 0.0729089975, 0, -13.0792751, 7.82635593, 159.720703, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_RightHandThumb2
+        BoneID: 40
+  - BoneName: mixamorig_RightHandThumb2
+    BoneID: 40
+    BindTransform: [0.326097995, -0.784114003, 0.528038979, 0, 0.286426991, -0.45036301, -0.845655024, 0, 0.900900006, 0.427011013, 0.0777290016, 0, -14.2638149, 3.24905992, 159.64473, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_RightHandThumb3
+        BoneID: 41
+  - BoneName: mixamorig_RightHandThumb3
+    BoneID: 41
+    BindTransform: [0.433602005, -0.730153978, 0.528075993, 0, 0.347296, -0.405346006, -0.84562403, 0, 0.831489027, 0.550063014, 0.0778210014, 0, -14.2229261, -2.14769793, 159.64325, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_RightHandThumb4
+        BoneID: 57
+  - BoneName: mixamorig_RightHandMiddle1
+    BoneID: 42
+    BindTransform: [-0.00140399998, -0.999997973, -0.001101, 0, 0.0137809999, 0.00108099997, -0.999903977, 0, 0.999903977, -0.00141899998, 0.0137790004, 0, 3.44993591, -81.0291367, 143.985901, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_RightHandMiddle2
+        BoneID: 43
+  - BoneName: mixamorig_RightHandMiddle2
+    BoneID: 43
+    BindTransform: [-0.00316999992, -0.99999398, -0.00109999999, 0, 0.0137, 0.00105700002, -0.999906003, 0, 0.999900997, -0.00318500004, 0.0136970002, 0, 3.31327105, -84.7728806, 143.985672, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_RightHandMiddle3
+        BoneID: 44
+  - BoneName: mixamorig_RightHandMiddle3
+    BoneID: 44
+    BindTransform: [-0.000184999997, -0.999998987, -0.001101, 0, 0.0137069998, 0.00109799998, -0.99990499, 0, 0.999906003, -0.000199999995, 0.0137069998, 0, 3.56974292, -87.6461639, 143.985657, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_RightHandMiddle4
+        BoneID: 62
+  - BoneName: mixamorig_RightHandRing1
+    BoneID: 45
+    BindTransform: [-0.00591999991, -0.999981999, -0.000467000005, 0, 0.0112439999, 0.000400999998, -0.999936998, 0, 0.999918997, -0.00592500018, 0.0112410001, 0, 5.31820297, -80.536972, 144.005829, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_RightHandRing2
+        BoneID: 46
+  - BoneName: mixamorig_RightHandRing2
+    BoneID: 46
+    BindTransform: [-0.00691, -0.999975979, -0.000465999998, 0, 0.0112380004, 0.000388999993, -0.999936998, 0, 0.999912977, -0.0069149998, 0.0112349996, 0, 5.23752689, -83.6685562, 144.00589, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_RightHandRing3
+        BoneID: 47
+  - BoneName: mixamorig_RightHandRing3
+    BoneID: 47
+    BindTransform: [-0.00621700007, -0.999980986, -0.000465999998, 0, 0.0112490002, 0.000395999989, -0.999936998, 0, 0.999916971, -0.00622199988, 0.0112469997, 0, 5.29423094, -86.5930634, 144.005951, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_RightHandRing4
+        BoneID: 63
+  - BoneName: mixamorig_RightHandPinky1
+    BoneID: 48
+    BindTransform: [-0.00507899979, -0.999981999, -0.0032279999, 0, 0.0137139997, 0.00315800007, -0.999900997, 0, 0.99989301, -0.00512199989, 0.0136980005, 0, 6.98223019, -79.9096451, 143.383133, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_RightHandPinky2
+        BoneID: 49
+  - BoneName: mixamorig_RightHandPinky2
+    BoneID: 49
+    BindTransform: [-0.00510400021, -0.999981999, -0.00322699989, 0, 0.0137130003, 0.00315700006, -0.999900997, 0, 0.99989301, -0.00514800008, 0.0136970002, 0, 6.97937202, -83.5205383, 143.383209, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_RightHandPinky3
+        BoneID: 50
+  - BoneName: mixamorig_RightHandPinky3
+    BoneID: 50
+    BindTransform: [-0.0038399999, -0.999987006, -0.0032279999, 0, 0.0136820003, 0.00317499996, -0.999900997, 0, 0.99989903, -0.003883, 0.0136700002, 0, 7.09085608, -85.6281281, 143.38295, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: true
+    Children:
+      - BoneName: mixamorig_RightHandPinky4
+        BoneID: 64
+  - BoneName: mixamorig_HeadTop_End
+    BoneID: 51
+    BindTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -9.99999997e-07, 17.7711792, 2.87176991, 1]
+    IsRealBone: false
+  - BoneName: mixamorig_LeftHandThumb4
+    BoneID: 52
+    BindTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0.118942, 2.54003906, 0, 1]
+    IsRealBone: false
+  - BoneName: mixamorig_LeftHandIndex4
+    BoneID: 53
+    BindTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -0.00472400011, 2.39465189, 0, 1]
+    IsRealBone: false
+  - BoneName: mixamorig_LeftHandMiddle4
+    BoneID: 54
+    BindTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -0.00228099991, 2.77961493, 0, 1]
+    IsRealBone: false
+  - BoneName: mixamorig_LeftHandRing4
+    BoneID: 55
+    BindTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0.00232900004, 2.62026501, 0, 1]
+    IsRealBone: false
+  - BoneName: mixamorig_LeftHandPinky4
+    BoneID: 56
+    BindTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0.000356000004, 1.94667196, 0, 1]
+    IsRealBone: false
+  - BoneName: mixamorig_RightHandThumb4
+    BoneID: 57
+    BindTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -0.319967002, 2.503052, 0, 1]
+    IsRealBone: false
+  - BoneName: mixamorig_RightHandIndex4
+    BoneID: 58
+    BindTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -0.00116900005, 2.38052893, 0, 1]
+    IsRealBone: false
+  - BoneName: mixamorig_RightHandIndex3
+    BoneID: 59
+    BindTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    MTransform: [0.999836981, 0.0179910008, 0.00125700003, 0, -0.0179910008, 0.990073025, 0.139396995, 0, 0.00126399996, -0.139395997, 0.990235984, 0, 0.00137800002, 2.89355612, 0, 1]
+    IsRealBone: false
+    Children:
+      - BoneName: mixamorig_RightHandIndex4
+        BoneID: 58
+  - BoneName: mixamorig_RightHandIndex2
+    BoneID: 60
+    BindTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    MTransform: [0.995932996, 0.0850320011, 0.029786, 0, -0.0851090029, 0.779402018, 0.620715976, 0, 0.0295659993, -0.620725989, 0.783469975, 0, -0.000592000026, 3.69594407, 0, 1]
+    IsRealBone: false
+    Children:
+      - BoneName: mixamorig_RightHandIndex3
+        BoneID: 59
+  - BoneName: mixamorig_RightHandIndex1
+    BoneID: 61
+    BindTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    MTransform: [0.995720029, 0.0920279995, 0.00850000046, 0, -0.0920080021, 0.978397012, 0.185132995, 0, 0.00872099958, -0.185122997, 0.982676983, 0, 2.24791503, 9.11137676, 0.478262991, 1]
+    IsRealBone: false
+    Children:
+      - BoneName: mixamorig_RightHandIndex2
+        BoneID: 60
+  - BoneName: mixamorig_RightHandMiddle4
+    BoneID: 62
+    BindTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -0.00442299992, 2.87103415, 0, 1]
+    IsRealBone: false
+  - BoneName: mixamorig_RightHandRing4
+    BoneID: 63
+    BindTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -0.000319999992, 2.65770197, 0, 1]
+    IsRealBone: false
+  - BoneName: mixamorig_RightHandPinky4
+    BoneID: 64
+    BindTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -0.00183800003, 1.99309099, 0, 1]
+    IsRealBone: false
+  - BoneName: mixamorig_LeftToe_End
+    BoneID: 65
+    BindTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 9.27236938, 0, 1]
+    IsRealBone: false
+  - BoneName: mixamorig_RightToe_End
+    BoneID: 66
+    BindTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 9.27249718, 0, 1]
+    IsRealBone: false
+  - BoneName: Erika_Archer_Eyes_Mesh
+    BoneID: 67
+    BindTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: false
+  - BoneName: Erika_Archer_Body_Mesh
+    BoneID: 68
+    BindTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: false
+  - BoneName: Erika_Archer_Clothes_Mesh
+    BoneID: 69
+    BindTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: false
+  - BoneName: Erika_Archer_Eyelashes_Mesh
+    BoneID: 70
+    BindTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    MTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    IsRealBone: false
+  - BoneName: RootNode
+    BoneID: 71
+    BindTransform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    MTransform: [0.00999999978, 0, 0, 0, 0, 0.00999999978, 0, 0, 0, 0, 0.00999999978, 0, 0, 0, 0, 1]
+    IsRealBone: false
+    Children:
+      - BoneName: mixamorig_Hips
+        BoneID: 2
+      - BoneName: Erika_Archer_Eyes_Mesh
+        BoneID: 67
+      - BoneName: Erika_Archer_Body_Mesh
+        BoneID: 68
+      - BoneName: Erika_Archer_Clothes_Mesh
+        BoneID: 69
+      - BoneName: Erika_Archer_Eyelashes_Mesh
+        BoneID: 70
+Animations:
+  - Breath
+  - UpStairs

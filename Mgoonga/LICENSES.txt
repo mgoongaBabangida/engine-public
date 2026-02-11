@@ -1,0 +1,58 @@
+This game uses the following third-party libraries:
+
+---
+
+**OpenAL Soft**
+Version: 1.23.1
+License: GNU Lesser General Public License v2.1 or later
+Website: https://github.com/kcat/openal-soft
+
+This software is used via dynamic linking and complies with the LGPL license. A copy of the LGPL license is included with this distribution.
+
+---
+
+**DevIL (Developer’s Image Library)**
+Version: 1.7.8
+License: DevIL License (BSD-like)
+Website: http://openil.sourceforge.net/
+
+Used for image loading and manipulation. Permissive license allows usage in commercial and closed-source software.
+
+---
+
+**yaml-cpp**
+License: MIT License
+Website: https://github.com/jbeder/yaml-cpp
+
+---
+
+**Assimp (Open Asset Import Library)**
+License: BSD 3-Clause License
+Website: https://github.com/assimp/assimp
+
+---
+
+**GLEW (OpenGL Extension Wrangler Library)**
+License: Modified BSD License
+Website: http://glew.sourceforge.net/
+
+---
+
+**SDL2**
+License: zlib License
+Website: https://www.libsdl.org/
+
+---
+
+**FreeType**
+License: FreeType License (BSD-like)
+Website: https://www.freetype.org/
+
+---
+
+**Other**
+All other code and assets are either original work or used under permissive licenses and compatible with commercial distribution.
+
+---
+
+A copy of the relevant licenses is included in the `third_party/licenses/` folder as required by each license.

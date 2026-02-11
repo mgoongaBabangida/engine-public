@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Anim>
+ <Data id="1" name="Horseman_Dismounting" startFrame="0f" endFrame="47f" />
+ <Data id="2" name="Horseman_Mounting_up" startFrame="48f" endFrame="105f" />
+ <Data id="3" name="Horseman_Idle" startFrame="106f" endFrame="206f" />
+ <Data id="4" name="Horseman_looking_around" startFrame="207f" endFrame="383f" />
+ <Data id="5" name="Horseman_Say_No" startFrame="384f" endFrame="434f" />
+ <Data id="6" name="Horseman_Talking" startFrame="435f" endFrame="480f" />
+ <Data id="7" name="Horseman_Riding_Walkig_Horse" startFrame="485f" endFrame="519f" />
+ <Data id="8" name="Horseman_Riding_Troting_Horse" startFrame="524f" endFrame="548f" />
+ <Data id="9" name="Horseman_Riding_Galloping_Horse" startFrame="553f" endFrame="568f" />
+ <Data id="10" name="Horseman_Jumping_on_Horse" startFrame="569f" endFrame="604f" />
+ <Data id="11" name="Horseman_Getting_Hit" startFrame="605f" endFrame="640f" />
+ <Data id="12" name="Horseman_Left_blow" startFrame="641f" endFrame="676f" />
+ <Data id="13" name="Horseman_Left_UP_blow" startFrame="677f" endFrame="712f" />
+ <Data id="14" name="Horseman_Right_blow" startFrame="713f" endFrame="748f" />
+ <Data id="15" name="Horseman_Right_UP_blow" startFrame="749f" endFrame="784f" />
+ <Data id="16" name="Horseman_Death" startFrame="785f" endFrame="805f" />
+ <Data id="17" name="Horseman_Galloping_With_Spear_Crouched" startFrame="810f" endFrame="825f" />
+ <Data id="18" name="Horseman_Spear_Trust" startFrame="826f" endFrame="841f" />
+ <Data id="19" name="Horsman_death_with_Horse" startFrame="846f" endFrame="886f" />
+</Anim>

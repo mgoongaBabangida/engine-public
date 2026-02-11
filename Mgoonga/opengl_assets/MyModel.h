@@ -1,0 +1,118 @@
+#pragma once
+
+#include <base/interfaces.h>
+
+#include "opengl_assets.h"
+
+#include "MyMesh.h"
+
+struct Texture;
+
+//---------------------------------------------------------------------------------
+class DLL_OPENGL_ASSETS MyModel: public IModel
+{
+public:
+	//@todo make one constructor
+	MyModel();
+	MyModel(std::shared_ptr<Brush> _mesh,
+					const std::string& _name,
+					const Texture* t = nullptr,
+					const Texture* t2 = nullptr,
+					const Texture* t3 = nullptr,
+					const Texture* t4 = nullptr);
+
+	MyModel(const MyModel& _other);
+
+	MyModel& operator=(const MyModel&) = delete;
+
+	virtual ~MyModel();
+
+	std::vector<Brush*>											getMeshes()		const;
+
+  virtual size_t														GetVertexCount() const override;
+  virtual size_t														GetMeshCount() const override { return 1; }
+  virtual std::vector<const I3DMesh*>				Get3DMeshes() const override;
+	virtual std::vector<const IMesh*>					GetMeshes() const override;
+
+	virtual size_t														GetAnimationCount() const { return 0; }
+  virtual std::vector<const IAnimation*>		GetAnimations() const { return std::vector<const IAnimation*>();}
+
+	virtual bool														HasBones() const { return false; }
+	virtual std::vector<const IBone*>				GetBones() const { return {}; }
+
+	virtual bool											HasMaterial() const { return true; }
+	virtual void											SetMaterial(const Material& _material);
+	virtual std::optional<Material>		GetMaterial() const { return m_material; }
+
+	virtual void								Draw(int32_t _program)	override;
+	virtual void								DrawInstanced(int32_t _program, int32_t) override;
+	virtual const std::string&	GetName() const override { return m_name; }
+	virtual const std::string&	GetPath() const override { return m_path; }
+
+	virtual void SetUpMeshes() override;
+	virtual void ReloadTextures() override;
+
+	void												Debug();
+
+protected:
+	void _InitMaterialWithDefaults();
+
+	std::shared_ptr<Brush>  m_mesh;
+	Material								m_material;
+	std::string							m_name;
+	std::string							m_path;
+};
+
+// Just to cover a mesh for rendering
+//-------------------------------------------------------
+class DLL_OPENGL_ASSETS SimpleModel : public IModel //@todo need to improve
+{
+public:
+	explicit SimpleModel(IMesh* _m);
+
+	virtual ~SimpleModel();
+
+	virtual size_t														GetVertexCount() const override { return 0; }
+	virtual size_t														GetMeshCount() const override { return 1; }
+	virtual std::vector<const IMesh*>					GetMeshes() const override { return std::vector<const IMesh*>{ m_mesh }; }
+	virtual std::vector<const I3DMesh*>				Get3DMeshes() const override { return std::vector<const I3DMesh*>{}; } //@todo !!!!!
+	virtual size_t														GetAnimationCount() const { return 0; }
+	virtual std::vector<const IAnimation*>		GetAnimations() const { return std::vector<const IAnimation*>(); }
+
+	virtual bool														HasBones() const { return false; }
+	virtual std::vector<const IBone*>				GetBones() const { return {}; }
+
+	virtual void								Draw(int32_t _program)	override { m_mesh->Draw(); }
+	virtual const std::string&	GetName() const override { return m_mesh->Name(); }
+	virtual const std::string&	GetPath() const override { return m_path; }
+
+protected:
+	IMesh*									m_mesh;//-> unique_ptr
+	std::string							m_path;
+};
+
+//-------------------------------------------------------
+class DLL_OPENGL_ASSETS BezierCurveModel : public IModel //@todo need to improve
+{
+public:
+	explicit BezierCurveModel(std::vector<BezierCurveMesh*> _m) : m_meshs(_m) {}
+
+	virtual ~BezierCurveModel();
+
+	virtual size_t														GetVertexCount() const override { return 0; }
+	virtual size_t														GetMeshCount() const override { return m_meshs.size(); }
+	virtual std::vector<const IMesh*>					GetMeshes() const override;
+	virtual std::vector<const I3DMesh*>				Get3DMeshes() const override { return std::vector<const I3DMesh*>{}; }
+	virtual size_t														GetAnimationCount() const { return 0; }
+	virtual std::vector<const IAnimation*>		GetAnimations() const { return std::vector<const IAnimation*>(); }
+
+	virtual bool														HasBones() const { return false; }
+	virtual std::vector<const IBone*>				GetBones() const { return {}; }
+
+	virtual void								Draw(int32_t _program)	override;
+	virtual const std::string&	GetName() const override { return m_meshs[0]->Name(); }
+	virtual const std::string&	GetPath() const override { return m_path; }
+protected:
+	std::vector<BezierCurveMesh*>				m_meshs; //-> unique_ptr
+	std::string													m_path;
+};
